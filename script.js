@@ -10,6 +10,7 @@ const equationSymbols = ["Enter", "Equal", "NumpadEnter"];
 const decimalPoint = [".", ","];
 const decimalScale = 10000;
 
+currentData.textContent = 0;
 document.addEventListener("keydown", addChar);
 
 function addChar(e) {
@@ -20,10 +21,14 @@ function addChar(e) {
     if (operators.includes(e.key) && firstOperand && secondOperand) {addOperatorToDouble(e.key)}
     else if (operators.includes(e.key) && secondOperand) {addOperatorToSingle(e.key)};
     if (e.code == "Backspace") {removeLastSymbol()};
+    if (e.code == "Delete") {removeAllData()};
     document.getElementById("previous-operand").textContent = firstOperand;
     document.getElementById("current-operand").textContent = secondOperand;
 }
 function addDigit(e) {
+    if (secondOperand == "0") {
+        secondOperand = "";
+    }
     if (operator) {
         firstOperand = secondOperand;
         secondOperand = "";
@@ -100,4 +105,11 @@ function removeLastSymbol() {
         previousData.textContent = "";
         currentData.textContent = secondOperand;
     }
+}
+function removeAllData() {
+    firstOperand = "";
+    secondOperand = "";
+    operator = "";
+    previousData.textContent = "";
+    currentData.textContent = 0;
 }
