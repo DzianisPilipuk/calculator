@@ -52,7 +52,8 @@ function singleEquation() {
 }
 function doubleEquation() {
     previousData.textContent = firstOperand + storedOperator + secondOperand + "="
-    secondOperand = evaluate();
+    secondOperand = evaluate().toString();
+    limitDecimal();
     firstOperand = "";
     currentData.textContent = secondOperand;
     storedOperator = "";
