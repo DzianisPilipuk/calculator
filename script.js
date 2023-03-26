@@ -13,6 +13,37 @@ const decimalScale = 10000;
 currentData.textContent = 0;
 document.addEventListener("keydown", addChar);
 
+// buttons input
+const allButtons = document.querySelectorAll('button');
+allButtons.forEach(element => {
+    element.addEventListener('keydown', (e) => { if (e.key === "Enter") {e.preventDefault()}});
+})
+const digitButtons = document.querySelectorAll('#digit-button');
+digitButtons.forEach(element => {
+    element.addEventListener('click', (e) => addDigit(e.target.value));
+})
+const operatorButtons = document.querySelectorAll('#operator-button');
+operatorButtons.forEach(element => {
+    element.addEventListener('click', (e) => {
+        if ((e.target.value == "-") && (secondOperand == false)) {startNegative()};
+        if (firstOperand && secondOperand) {addOperatorToDouble(e.target.value)}
+        else if (secondOperand && secondOperand !== "-" && secondOperand !== "0") {addOperatorToSingle(e.target.value)};
+    });
+})
+const equationButton = document.getElementById('equation-button');
+equationButton.addEventListener('click', () => {
+    if (firstOperand && secondOperand) {doubleEquation()}
+    else if (secondOperand) {singleEquation()};
+})
+const decimalPointButton = document.getElementById('decimal-point-button');
+decimalPointButton.addEventListener('click', () => {addDecimalPoint()});
+const clearButton = document.getElementById('clear-button');
+clearButton.addEventListener('click', () => {removeLastSymbol()});
+const clearEntryButton = document.getElementById('clear-entry-button');
+clearEntryButton.addEventListener('click', () => {removeAllData()});
+
+
+// keyboard input
 function addChar(e) {
     if (!isNaN(e.key)) {addDigit(e.key)};
 
@@ -33,6 +64,8 @@ function addChar(e) {
     document.getElementById("previous-operand").textContent = firstOperand;
     document.getElementById("current-operand").textContent = secondOperand;
 }
+
+
 function addDigit(e) {
     if (secondOperand == "0") {
         secondOperand = "";
