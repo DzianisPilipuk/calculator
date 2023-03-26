@@ -31,13 +31,17 @@ function addDigit(e) {
         operator = "";
     }
     secondOperand += e;
-    // secondOperand = (~~(secondOperand*decimalScale))/decimalScale;
+    limitDecimal();
     currentData.textContent = secondOperand;
+}
+function limitDecimal() {
+    if (secondOperand.includes(".")) {
+        secondOperand = secondOperand.slice(0, (secondOperand.indexOf(".") + decimalScale.toString().length));
+    }
 }
 function addDecimalPoint() {
     if (!secondOperand.includes(".")) {
         secondOperand += ".";
-        // secondOperand = (~~(secondOperand*decimalScale))/decimalScale;
         currentData.textContent = secondOperand;
     }
 }
