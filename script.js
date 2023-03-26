@@ -6,13 +6,16 @@ let result;
 const previousData = document.getElementById("previous-data");
 const currentData = document.getElementById("current-data");
 const operators = ["/", "*", "-", "+"];
-const equationSymbols = ["Enter", "Equal", "NumpadEnter"]
+const equationSymbols = ["Enter", "Equal", "NumpadEnter"];
+const decimalPoint = [".", ","];
+const decimalScale = 10000;
 
 document.addEventListener("keydown", addChar);
 
 // get the number
 function addChar(e) {
     if (!isNaN(e.key)) {addDigit(e.key)};
+    if (decimalPoint.includes(e.key)) {addDecimalPoint()};
     if (equationSymbols.includes(e.code) && firstOperand && secondOperand) {doubleEquation()}
     else if (equationSymbols.includes(e.code) && secondOperand) {singleEquation()};
     if (operators.includes(e.key) && firstOperand && secondOperand) {addOperatorToDouble(e.key)}
@@ -28,7 +31,15 @@ function addDigit(e) {
         operator = "";
     }
     secondOperand += e;
+    // secondOperand = (~~(secondOperand*decimalScale))/decimalScale;
     currentData.textContent = secondOperand;
+}
+function addDecimalPoint() {
+    if (!secondOperand.includes(".")) {
+        secondOperand += ".";
+        // secondOperand = (~~(secondOperand*decimalScale))/decimalScale;
+        currentData.textContent = secondOperand;
+    }
 }
 function singleEquation() {
     previousData.textContent = secondOperand + "=";
@@ -45,6 +56,7 @@ function doubleEquation() {
 function addOperatorToSingle(e) {
     operator = e;
     previousData.textContent = secondOperand + e;
+    currentData.textContent = "";
 }
 function addOperatorToDouble(e) {
     secondOperand = evaluate();
@@ -54,16 +66,16 @@ function addOperatorToDouble(e) {
 }
 function evaluate() {
     if (storedOperator == "+") {
-        return ~~firstOperand + ~~secondOperand
+        return (firstOperand*decimalScale + secondOperand*decimalScale)/decimalScale
     }
     if (storedOperator == "-") {
-        return ~~firstOperand - ~~secondOperand
+        return (firstOperand*decimalScale - secondOperand*decimalScale)/decimalScale
     }
     if (storedOperator == "*") {
-        return ~~firstOperand * ~~secondOperand
+        return ((firstOperand*decimalScale) * (secondOperand*decimalScale))/decimalScale/decimalScale;
     }
     if (storedOperator == "/") {
-        return ~~firstOperand / ~~secondOperand
+        return ((firstOperand*decimalScale) / (secondOperand*decimalScale));
     }
 }
 // proceed operation
