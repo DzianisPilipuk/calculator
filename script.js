@@ -1,60 +1,69 @@
-let previousOperand;
-let currentOperand = "";
+let firstOperand;
+let secondOperand = "";
 let operator;
+let storedOperator;
+let result;
 const previousData = document.getElementById("previous-data");
 const currentData = document.getElementById("current-data");
-let operatorAvailable = false;
 const operators = ["/", "*", "-", "+"];
 const equationSymbols = ["Enter", "Equal", "NumpadEnter"]
-let unlock = true;
 
 document.addEventListener("keydown", addChar);
 
 // get the number
 function addChar(e) {
     if (!isNaN(e.key)) {addDigit(e.key)};
-    if (equationSymbols.includes(e.code) && currentOperand) {equation()};
-    if (operators.includes(e.key)) {addOperator(e.key)};
+    if (equationSymbols.includes(e.code) && firstOperand && secondOperand) {doubleEquation()}
+    else if (equationSymbols.includes(e.code) && secondOperand) {singleEquation()};
+    if (operators.includes(e.key) && firstOperand && secondOperand) {addOperatorToDouble(e.key)}
+    else if (operators.includes(e.key) && secondOperand) {addOperatorToSingle(e.key)};
+    document.getElementById("previous-operand").textContent = firstOperand;
+    document.getElementById("current-operand").textContent = secondOperand;
 }
 function addDigit(e) {
-    if (operator && unlock) {
-        previousOperand = currentOperand;
-        previousData.textContent = previousOperand + operator;
-        currentOperand = "";
-        unlock = false;
+    if (operator) {
+        firstOperand = secondOperand;
+        secondOperand = "";
+        storedOperator = operator;
+        operator = "";
     }
-    currentOperand += e;
-    currentData.textContent = currentOperand;
+    secondOperand += e;
+    currentData.textContent = secondOperand;
 }
-function equation() {
-    previousData.textContent = previousOperand + operator + currentOperand + "="
-    previousOperand = evaluate();
-    currentData.textContent = previousOperand;
-    unlock = true;
+function singleEquation() {
+    previousData.textContent = secondOperand + "=";
+    currentData.textContent = secondOperand;
+    storedOperator = "";
 }
-function addOperator(e) {
+function doubleEquation() {
+    previousData.textContent = firstOperand + storedOperator + secondOperand + "="
+    secondOperand = evaluate();
+    firstOperand = "";
+    currentData.textContent = secondOperand;
+    storedOperator = "";
+}
+function addOperatorToSingle(e) {
     operator = e;
-    if (currentOperand) {
-        previousData.textContent = currentOperand + e;
-    }
-    else {
-        previousData.textContent = previousOperand + e;
-    }
-    currentData.textContent = "0";
-    unlock = true;
+    previousData.textContent = secondOperand + e;
+}
+function addOperatorToDouble(e) {
+    secondOperand = evaluate();
+    firstOperand = "";
+    operator = e;
+    previousData.textContent = secondOperand + e;
 }
 function evaluate() {
-    if (operator == "+") {
-        return ~~previousOperand + ~~currentOperand
+    if (storedOperator == "+") {
+        return ~~firstOperand + ~~secondOperand
     }
-    if (operator == "-") {
-        return ~~previousOperand - ~~currentOperand
+    if (storedOperator == "-") {
+        return ~~firstOperand - ~~secondOperand
     }
-    if (operator == "*") {
-        return ~~previousOperand * ~~currentOperand
+    if (storedOperator == "*") {
+        return ~~firstOperand * ~~secondOperand
     }
-    if (operator == "/") {
-        return ~~previousOperand / ~~currentOperand
+    if (storedOperator == "/") {
+        return ~~firstOperand / ~~secondOperand
     }
 }
 // proceed operation
