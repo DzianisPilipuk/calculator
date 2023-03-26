@@ -12,7 +12,6 @@ const decimalScale = 10000;
 
 document.addEventListener("keydown", addChar);
 
-// get the number
 function addChar(e) {
     if (!isNaN(e.key)) {addDigit(e.key)};
     if (decimalPoint.includes(e.key)) {addDecimalPoint()};
@@ -20,6 +19,7 @@ function addChar(e) {
     else if (equationSymbols.includes(e.code) && secondOperand) {singleEquation()};
     if (operators.includes(e.key) && firstOperand && secondOperand) {addOperatorToDouble(e.key)}
     else if (operators.includes(e.key) && secondOperand) {addOperatorToSingle(e.key)};
+    if (e.code == "Backspace") {removeLastSymbol()};
     document.getElementById("previous-operand").textContent = firstOperand;
     document.getElementById("current-operand").textContent = secondOperand;
 }
@@ -68,6 +68,7 @@ function addOperatorToDouble(e) {
     firstOperand = "";
     operator = e;
     previousData.textContent = secondOperand + e;
+    currentData.textContent = "";
 }
 function evaluate() {
     if (storedOperator == "+") {
@@ -83,36 +84,20 @@ function evaluate() {
         return ((firstOperand*decimalScale) / (secondOperand*decimalScale));
     }
 }
-// proceed operation
-
-// function addChar(e) {
-//     if (!isNaN(e.key)) {
-//         if (displayCurrent == 0) {
-//             displayCurrent = "";
-//             updateCurrent();
-//         }
-//         displayCurrent += e.key;
-//         updateCurrent();
-//         operatorAvailable = true;
-//     }
-//     if (operators.includes(e.key) && operatorAvailable) {
-//         displayPrevious = displayCurrent;
-//         if (operator) {
-//             operand_2 = displayCurrent;
-//         }
-//         else {
-//             operand_1 = displayCurrent;
-//         }
-//         displayCurrent = 0;
-//         if (operator) {
-//             displayPrevious = evaluate();
-//             updatePrevious();
-//             operand_1 = displayPrevious;
-//         }
-//         displayPrevious += e.key;
-//         updatePrevious();
-//         operator = e.key;
-//         currentOperation.textContent = displayCurrent + ".";
-//         displayCurrent = "0";
-//     }
-// }
+function removeLastSymbol() {
+    if (operator) {
+        operator = "";
+        previousData.textContent = "";
+        currentData.textContent = secondOperand;
+    }
+    else if (secondOperand) {
+        secondOperand = secondOperand.slice(0, (secondOperand.length - 1));
+        currentData.textContent = secondOperand;
+    }
+    else {
+        secondOperand = firstOperand;
+        firstOperand = "";
+        previousData.textContent = "";
+        currentData.textContent = secondOperand;
+    }
+}
