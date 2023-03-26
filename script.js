@@ -98,7 +98,14 @@ function evaluate() {
         return ((firstOperand*decimalScale) * (secondOperand*decimalScale))/decimalScale/decimalScale;
     }
     if (storedOperator == "/") {
-        return ((firstOperand*decimalScale) / (secondOperand*decimalScale));
+        if (secondOperand == 0) {
+            alert ("Can't divide by zero");
+            previousData.textContent = "";
+            return (firstOperand);
+        }
+        else {
+            return ((firstOperand*decimalScale) / (secondOperand*decimalScale));
+        }
     }
 }
 function removeLastSymbol() {
