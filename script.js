@@ -15,13 +15,21 @@ document.addEventListener("keydown", addChar);
 
 function addChar(e) {
     if (!isNaN(e.key)) {addDigit(e.key)};
+
     if (decimalPoint.includes(e.key)) {addDecimalPoint()};
+
     if (equationSymbols.includes(e.code) && firstOperand && secondOperand) {doubleEquation()}
     else if (equationSymbols.includes(e.code) && secondOperand) {singleEquation()};
+    
     if (operators.includes(e.key) && firstOperand && secondOperand) {addOperatorToDouble(e.key)}
-    else if (operators.includes(e.key) && secondOperand) {addOperatorToSingle(e.key)};
+    else if (operators.includes(e.key) && secondOperand && secondOperand !== "-" && secondOperand !== "0") {addOperatorToSingle(e.key)};
+    
+    if ((e.key == "-") && (secondOperand == false)) {startNegative()};
+
     if (e.code == "Backspace") {removeLastSymbol()};
+
     if (e.code == "Delete") {removeAllData()};
+
     document.getElementById("previous-operand").textContent = firstOperand;
     document.getElementById("current-operand").textContent = secondOperand;
 }
@@ -49,6 +57,10 @@ function addDecimalPoint() {
         secondOperand += ".";
         currentData.textContent = secondOperand;
     }
+}
+function startNegative() {
+    secondOperand = "-";
+    currentData.textContent = secondOperand;
 }
 function singleEquation() {
     previousData.textContent = secondOperand + "=";
