@@ -1,0 +1,33 @@
+.container {
+    background-color: rgb(190, 190, 190);
+    width: 400px;
+    padding: 2px;
+}
+.displayer {
+    background-color: rgb(238, 238, 238);
+    margin: 2px;
+    border-radius: 4px;
+    padding: 3px;
+}
+.buttons-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.clear-buttons-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.digit-buttons-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.operator-buttons-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.btn {
+    margin: 2px;
+    height: 40px;
+    border-style: none;
+    border-radius: 4px;
+}

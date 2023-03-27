@@ -7,6 +7,7 @@
     <title>Calculator</title>
 
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -17,21 +18,25 @@
             </div>
         </div>
         <div class="buttons-wrapper">
-            <div class="functions-buttons-wrapper">
-                <button class="btn" id="clear-entry-button">CE</button>
-                <button class="btn" id="clear-button">C</button>
-            </div>
-            <div class="digit-buttons-wrapper">
-                <button class="btn" id="digit-button" value="1">1</button>
-                <button class="btn" id="digit-button" value="2">2</button>
-                <button class="btn" id="digit-button" value="3">3</button>
-                <button class="btn" id="digit-button" value="4">4</button>
-                <button class="btn" id="digit-button" value="5">5</button>
-                <button class="btn" id="digit-button" value="6">6</button>
-                <button class="btn" id="digit-button" value="7">7</button>
-                <button class="btn" id="digit-button" value="8">8</button>
-                <button class="btn" id="digit-button" value="9">9</button>
-                <button class="btn" id="digit-button" value="0">0</button>
+            <div class="non-operator-buttons-wrapper">
+                <div class="clear-buttons-wrapper">
+                    <button class="btn" id="clear-entry-button">CE</button>
+                    <button class="btn" id="clear-button">C</button>
+                </div>
+                <div class="digit-buttons-wrapper">
+                    <button class="btn" id="digit-button" value="1">1</button>
+                    <button class="btn" id="digit-button" value="2">2</button>
+                    <button class="btn" id="digit-button" value="3">3</button>
+                    <button class="btn" id="digit-button" value="4">4</button>
+                    <button class="btn" id="digit-button" value="5">5</button>
+                    <button class="btn" id="digit-button" value="6">6</button>
+                    <button class="btn" id="digit-button" value="7">7</button>
+                    <button class="btn" id="digit-button" value="8">8</button>
+                    <button class="btn" id="digit-button" value="9">9</button>
+                    <button class="btn">github</button>
+                    <button class="btn" id="digit-button" value="0">0</button>
+                    <button class="btn" id="decimal-point-button">.</button>
+                </div>
             </div>
             <div class="operator-buttons-wrapper">
                 <button class="btn" id="operator-button" value="+">+</button>
@@ -39,7 +44,6 @@
                 <button class="btn" id="operator-button" value="*">*</button>
                 <button class="btn" id="operator-button" value="/">/</button>
                 <button class="btn" id="equation-button">=</button>
-                <button class="btn" id="decimal-point-button">.</button>
             </div>
             <div id="previous-operand" style="color: rgb(88, 88, 88); height: 20px;">
             </div>
