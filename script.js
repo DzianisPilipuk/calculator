@@ -60,9 +60,6 @@ function addChar(e) {
     if (e.code == "Backspace") {removeLastSymbol()};
 
     if (e.code == "Delete") {removeAllData()};
-
-    document.getElementById("previous-operand").textContent = firstOperand;
-    document.getElementById("current-operand").textContent = secondOperand;
 }
 
 

@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="displayer" id="dispalay">
-            <div class="previous-data" id="previous-data" style="color: rgb(88, 88, 88); height: 20px;">
+            <div class="previous-data" id="previous-data">
             </div>
-            <div class="current-data" id="current-data" style="color: black; height: 20px;">
+            <div class="current-data" id="current-data">
             </div>
         </div>
         <div class="buttons-wrapper">
@@ -33,7 +35,11 @@
                     <button class="btn" id="digit-button" value="7">7</button>
                     <button class="btn" id="digit-button" value="8">8</button>
                     <button class="btn" id="digit-button" value="9">9</button>
-                    <button class="btn">github</button>
+                    <button class="btn">
+                        <div class="btn-github">
+                            <i class="fab fa-github"></i>
+                        </div>
+                    </button>
                     <button class="btn" id="digit-button" value="0">0</button>
                     <button class="btn" id="decimal-point-button">.</button>
                 </div>
@@ -44,10 +50,6 @@
                 <button class="btn" id="operator-button" value="*">*</button>
                 <button class="btn" id="operator-button" value="/">/</button>
                 <button class="btn" id="equation-button">=</button>
-            </div>
-            <div id="previous-operand" style="color: rgb(88, 88, 88); height: 20px;">
-            </div>
-            <div id="current-operand" style="color: black; height: 20px;">
             </div>
         </div>
     </div>
