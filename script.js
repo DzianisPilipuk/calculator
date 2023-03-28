@@ -131,8 +131,7 @@ function evaluate() {
     }
     if (storedOperator == "/") {
         if (secondOperand == 0) {
-            alert ("Can't divide by zero");
-            previousData.textContent = "";
+            previousData.textContent = "can't divide by zero";
             return (firstOperand);
         }
         else {
