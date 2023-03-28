@@ -1,5 +1,5 @@
 .container {
-    background-color: rgb(190, 190, 190);
+    background-color: rgb(175, 175, 175);
     width: 400px;
     padding: 10px;
     border-radius: 10px;
@@ -54,6 +54,19 @@
     border-radius: 4px;
     font-family: 'Bakbak One', cursive;
     font-size: 1.4em;
+    background-color: rgb(238, 238, 238)
+}
+.btn:hover {
+    background-color: rgb(230, 230, 230);
+}
+.btn:active {
+    border-style: solid;
+    border-radius: 6px;
+    border-color: rgb(175, 175, 175);
+    background-color: rgb(220, 220, 220);
+}
+#clear-entry-button:active {
+    background-color: rgb(255, 156, 156);
 }
 .btn-github {
     font-size: 2em;
