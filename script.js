@@ -41,6 +41,8 @@ const clearButton = document.getElementById('clear-button');
 clearButton.addEventListener('click', () => {removeLastSymbol()});
 const clearEntryButton = document.getElementById('clear-entry-button');
 clearEntryButton.addEventListener('click', () => {removeAllData()});
+const githubButton = document.getElementById('github-button');
+githubButton.addEventListener('click', () => {location.href='https://github.com/DzianisPilipuk'});
 
 
 // keyboard input
