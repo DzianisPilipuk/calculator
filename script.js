@@ -121,13 +121,13 @@ function addOperatorToDouble(e) {
 }
 function evaluate() {
     if (storedOperator == "+") {
-        return (firstOperand*decimalScale + secondOperand*decimalScale)/decimalScale
+        return ((BigInt(firstOperand))*BigInt(decimalScale) + (BigInt(secondOperand))*BigInt(decimalScale))/BigInt(decimalScale)
     }
     if (storedOperator == "-") {
-        return (firstOperand*decimalScale - secondOperand*decimalScale)/decimalScale
+        return ((BigInt(firstOperand))*BigInt(decimalScale) - (BigInt(secondOperand))*BigInt(decimalScale))/BigInt(decimalScale)
     }
     if (storedOperator == "*") {
-        return ((firstOperand*decimalScale) * (secondOperand*decimalScale))/decimalScale/decimalScale;
+        return (((BigInt(firstOperand))*BigInt(decimalScale)) * ((BigInt(secondOperand))*BigInt(decimalScale)))/BigInt(decimalScale)/BigInt(decimalScale);
     }
     if (storedOperator == "/") {
         if (secondOperand == 0) {
@@ -135,7 +135,7 @@ function evaluate() {
             return (firstOperand);
         }
         else {
-            return ((firstOperand*decimalScale) / (secondOperand*decimalScale));
+            return (((BigInt(firstOperand))*BigInt(decimalScale)) / ((BigInt(secondOperand))*BigInt(decimalScale)));
         }
     }
 }
